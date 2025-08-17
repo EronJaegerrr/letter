@@ -2,190 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>For Julliane</title>
   <style>
     body {
-      font-family: 'Georgia', serif;
+      font-family: "Arial", sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: pink;
       margin: 0;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     }
-
-    .envelope {
-      position: relative;
-      width: 320px;
-      height: 200px;
-      cursor: pointer;
-      perspective: 1000px;
+    .container {
+      text-align: center;
     }
-
-    /* Envelope body */
-    .envelope-base {
-      width: 100%;
-      height: 100%;
-      background: #ffe6e6;
-      border: 2px solid #d46a6a;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Flap (top triangle) */
-    .flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-bottom: 100px solid #d46a6a;
-      transform-origin: top;
-      transition: transform 0.6s ease;
-      z-index: 2;
-    }
-
-    .open .flap {
-      transform: rotateX(180deg);
-    }
-
-    /* Side folds */
-    .side-left, .side-right {
-      position: absolute;
-      top: 0;
-      width: 0;
-      height: 0;
-      border-top: 100px solid transparent;
-      border-bottom: 100px solid transparent;
-    }
-
-    .side-left {
-      left: 0;
-      border-right: 160px solid #ffcccc;
-    }
-
-    .side-right {
-      right: 0;
-      border-left: 160px solid #ffcccc;
-    }
-
-    /* Bottom fold */
-    .bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 160px solid transparent;
-      border-right: 160px solid transparent;
-      border-top: 100px solid #ff9999;
-      z-index: 0;
-    }
-
-    .press-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-weight: bold;
+    button {
+      padding: 15px 30px;
       font-size: 18px;
-      color: #a83232;
-      z-index: 3;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 500px;
-      text-align: left;
-      line-height: 1.6;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      animation: fadeIn 0.5s;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    .close-btn {
-      margin-top: 15px;
-      padding: 8px 14px;
-      background: #ff6666;
+      font-weight: bold;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
+      background: #ff4d6d;
       color: white;
       cursor: pointer;
-      font-size: 14px;
+      transition: 0.3s;
     }
-    .close-btn:hover {
-      background: #cc0000;
+    button:hover {
+      background: #e63950;
+    }
+    .message-box {
+      display: none;
+      margin-top: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .message-box p {
+      text-align: left;
+      line-height: 1.5;
+      color: #333;
+    }
+    .signature {
+      margin-top: 15px;
+      text-align: right;
+      font-style: italic;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-    <div class="side-left"></div>
-    <div class="side-right"></div>
-    <div class="bottom"></div>
-    <div class="envelope-base"></div>
-    <div class="press-text">Press Me</div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="messageModal">
-    <div class="modal-content">
-      <p>
-        Good Evening, Julliane Mau! Odette Godz!!! <br><br>
-        I just wanted to say that talking and chatting with you these past few weeks has been so fun. 
-        It’s also been really fun playing with you — and somewhere along the way, I realized something deep inside me… 
-        my feelings for you never really left since February. <br><br>
-        I know you’re focused on your studies right now, and I truly respect that. 
-        But I also just want to be honest about how I feel. Every time I get to talk to you or play with you, 
-        I can’t help but smile. I’m genuinely happy, and it’s been so long since I’ve felt this way. <br><br>
-        I’m not rushing anything — I know your priorities, and I admire that about you. 
-        I just want you to know that I’ll be here, and I’m willing to wait patiently until you’re ready. <br><br>
-        – From Aaron
-      </p>
-      <button class="close-btn" id="closeBtn">Close</button>
+  <div class="container">
+    <button onclick="showMessage()">💌 Press Me</button>
+    <div class="message-box" id="message">
+      <p>Good Evening, Julliane Mau! Odette Godz!!!</p>
+      <p>I just wanted to say that talking and chatting with you these past few weeks has been so fun. It’s also been really fun playing with you — and somewhere along the way, I realized something deep inside me… my feelings for you never really left since February.</p>
+      <p>I know you’re focused on your studies right now, and I truly respect that. But I also just want to be honest about how I feel. Every time I get to talk to you or play with you, I can’t help but smile. I’m genuinely happy, and it’s been so long since I’ve felt this way.</p>
+      <p>I’m not rushing anything — I know your priorities, and I admire that about you. I just want you to know that I’ll be here, and I’m willing to wait patiently until you’re ready.</p>
+      <p class="signature">From, Aaron</p>
     </div>
   </div>
 
   <script>
-    const envelope = document.getElementById('envelope');
-    const modal = document.getElementById('messageModal');
-    const closeBtn = document.getElementById('closeBtn');
-
-    envelope.addEventListener('click', () => {
-      envelope.classList.add('open');
-      setTimeout(() => {
-        modal.style.display = 'flex';
-      }, 600); // waits for flap animation
-    });
-
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = 'none';
-    });
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
+    }
   </script>
 </body>
 </html>
