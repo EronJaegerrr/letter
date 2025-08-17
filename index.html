@@ -8,102 +8,97 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      font-family: 'Georgia', serif;
     }
-    .container {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      max-width: 600px;
-      text-align: center;
-      color: white;
+
+    .envelope {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #ffb6c1;
+      cursor: pointer;
+      perspective: 1000px;
     }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: #ff8da1;
+      transform-origin: top;
+      transition: transform 1s;
+      z-index: 2;
     }
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      white-space: pre-line;
-      text-align: left;
+
+    .letter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
       opacity: 0;
-      animation: fadeIn 3s forwards;
+      transform: translateY(30px);
+      transition: opacity 1s, transform 1s;
+      z-index: 1;
     }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+
+    .envelope.open .flap {
+      transform: rotateX(-180deg);
     }
+
+    .envelope.open .letter {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      text-align: center;
+      color: #e75480;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+    }
+
     .signature {
       margin-top: 20px;
-      font-style: italic;
-      font-size: 16px;
       text-align: right;
-      opacity: 0;
-      animation: fadeIn 3s 4s forwards;
-    }
-    /* Floating hearts */
-    .heart {
-      position: absolute;
-      color: #ffdde1;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+      font-style: italic;
+      color: #e75480;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Good Evening, Julliane Mau! Odette Godz!!!</h1>
-    <p id="message"></p>
-    <div class="signature">– Aaron</div>
+  <div class="envelope" onclick="this.classList.toggle('open')">
+    <div class="flap"></div>
+    <div class="letter">
+      <h2>Good Evening, Julliane Mau! Odette Godz!!!</h2>
+      <p>
+        I just wanted to say that talking and chatting with you these past few weeks has been so fun.  
+        It’s also been really fun playing with you — and somewhere along the way, I realized something deep inside me… my feelings for you never really left since February.
+      </p>
+      <p>
+        I know you’re focused on your studies right now, and I truly respect that. But I also just want to be honest about how I feel. Every time I get to talk to you or play with you, I can’t help but smile.  
+        I’m genuinely happy, and it’s been so long since I’ve felt this way.
+      </p>
+      <p>
+        I’m not rushing anything — I know your priorities, and I admire that about you. I just want you to know that I’ll be here, and I’m willing to wait patiently until you’re ready.
+      </p>
+      <p class="signature">– Aaron</p>
+    </div>
   </div>
-
-  <script>
-    const message = `I just wanted to say that talking and chatting with you these past few weeks has been so fun. It’s also been really fun playing with you — and somewhere along the way, I realized something deep inside me… my feelings for you never really left since February.
-
-I know you’re focused on your studies right now, and I truly respect that. But I also just want to be honest about how I feel. Every time I get to talk to you or play with you, I can’t help but smile. I’m genuinely happy, and it’s been so long since I’ve felt this way.
-
-I’m not rushing anything — I know your priorities, and I admire that about you. I just want you to know that I’ll be here, and I’m willing to wait patiently until you’re ready.`;
-
-    let i = 0;
-    function typeWriter() {
-      if (i < message.length) {
-        document.getElementById("message").innerHTML += message.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-      }
-    }
-    typeWriter();
-
-    // Floating hearts
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-      document.body.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }
-    setInterval(createHeart, 800);
-  </script>
 </body>
 </html>
