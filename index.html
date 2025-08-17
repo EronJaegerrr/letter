@@ -1,40 +1,57 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Letter for Julliane</title>
+  <title>💌</title>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
       background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-      font-family: 'Georgia', serif;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .envelope {
+      width: 280px;
+      height: 180px;
+      background: #fff;
       position: relative;
-      width: 300px;
-      height: 200px;
-      background: #ffb6c1;
       cursor: pointer;
-      perspective: 1000px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      border-radius: 6px;
     }
 
-    .flap {
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    /* Envelope flap */
+    .envelope::before {
+      content: "";
       position: absolute;
-      top: 0;
+      top: -90px;
       left: 0;
-      width: 100%;
-      height: 50%;
-      background: #ff8da1;
-      transform-origin: top;
-      transition: transform 1s;
-      z-index: 2;
+      width: 0;
+      height: 0;
+      border-left: 140px solid transparent;
+      border-right: 140px solid transparent;
+      border-bottom: 90px solid #fff;
+    }
+
+    /* Press Me text */
+    .press {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff4e78;
+      pointer-events: none;
     }
 
     .letter {
@@ -43,31 +60,26 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: white;
+      background: #fff;
       padding: 20px;
       box-sizing: border-box;
-      overflow-y: auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s, transform 1s;
-      z-index: 1;
+      text-align: center;
+      transform: translateY(100%);
+      transition: transform 0.6s ease;
+      border-radius: 6px;
+      overflow: hidden;
     }
 
-    .envelope.open .flap {
-      transform: rotateX(-180deg);
-    }
-
-    .envelope.open .letter {
-      opacity: 1;
+    .letter.open {
       transform: translateY(0);
     }
 
-    h2 {
-      text-align: center;
-      color: #e75480;
+    .letter h2 {
+      margin-top: 0;
+      color: #ff4e78;
     }
 
-    p {
+    .letter p {
       font-size: 14px;
       line-height: 1.5;
       color: #333;
@@ -75,30 +87,30 @@
 
     .signature {
       margin-top: 20px;
-      text-align: right;
-      font-style: italic;
-      color: #e75480;
+      font-weight: bold;
+      color: #ff4e78;
     }
   </style>
 </head>
 <body>
-  <div class="envelope" onclick="this.classList.toggle('open')">
-    <div class="flap"></div>
-    <div class="letter">
-      <h2>Good Evening, Julliane Mau! Odette Godz!!!</h2>
+  <div class="envelope" onclick="openLetter()">
+    <div class="press">Press Me 💌</div>
+    <div class="letter" id="letter">
+      <h2>Hi [Crush's Name],</h2>
       <p>
-        I just wanted to say that talking and chatting with you these past few weeks has been so fun.  
-        It’s also been really fun playing with you — and somewhere along the way, I realized something deep inside me… my feelings for you never really left since February.
-      </p>
-      <p>
-        I know you’re focused on your studies right now, and I truly respect that. But I also just want to be honest about how I feel. Every time I get to talk to you or play with you, I can’t help but smile.  
-        I’m genuinely happy, and it’s been so long since I’ve felt this way.
-      </p>
-      <p>
-        I’m not rushing anything — I know your priorities, and I admire that about you. I just want you to know that I’ll be here, and I’m willing to wait patiently until you’re ready.
+        Talking and chatting with you these past few weeks has been so fun.  
+        Honestly, I’ve started to like you more than just a friend.  
+        I admire the way you [insert personal detail if you want].  
+        So… this is me being brave — I like you. ❤️
       </p>
       <p class="signature">– Aaron</p>
     </div>
   </div>
+
+  <script>
+    function openLetter() {
+      document.getElementById("letter").classList.toggle("open");
+    }
+  </script>
 </body>
 </html>
